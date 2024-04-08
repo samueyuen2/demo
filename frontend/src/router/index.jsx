@@ -15,7 +15,7 @@ function Router() {
                     <Route path="dashboard" element={<Dashboard />} /> */}
 
                     {/* Default Not Found Catcher */}
-                    <Route path="*" element={<>Sorry, Page not found, mate.</>} />
+                    <Route path="*" element={<>Sorry, mate.<br />Page not found.</>} />
                 </Route>
             </Routes>
         </BrowserRouter>
