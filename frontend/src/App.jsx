@@ -1,5 +1,5 @@
-// import './App.css'
 import { useState } from 'react'
+import { BrowserRouter, } from "react-router-dom";
 
 // Components
 import LoginDialog from './components/LoginDialog/LoginDialog'
@@ -20,22 +20,22 @@ function App() {
 
   return (
     <ThemeProvider theme={DefaultTheme} >
-      {/* <Box maxWidth="xl" sx={{ margin: "0 auto"}}> */}
-      <Box sx={{ width: '100%' }}>
-        {
-          isLoggedIn ?
-            <>
-              <AppBar onLogout={() => { setIsLoggedIn(false) }} />
-              <Router />
-            </>
-            :
-            <LoginDialog
-              open={!isLoggedIn}
-              onClick={() => { setIsLoggedIn(true); }}
-            />
-        }
-      </Box>
-      {/* </Box> */}
+      <BrowserRouter>
+        <AppBar onLogout={() => { setIsLoggedIn(false) }} isLoggedIn={isLoggedIn} />
+        <Box sx={{ m: "0 10%" }}>
+          {
+            isLoggedIn ?
+              <>
+                <Router />
+              </>
+              :
+              <LoginDialog
+                open={!isLoggedIn}
+                onClick={() => { setIsLoggedIn(true); }}
+              />
+          }
+        </Box>
+      </BrowserRouter>
     </ThemeProvider>
   )
 }

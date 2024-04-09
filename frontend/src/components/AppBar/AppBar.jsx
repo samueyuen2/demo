@@ -1,6 +1,9 @@
 // React
 import { useState } from 'react'
 
+// react-router-dom
+import { useNavigate } from "react-router-dom";
+
 // MUI
 import {
   AppBar, Box,
@@ -15,9 +18,11 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import PersonIcon from '@mui/icons-material/Person';
+import ChecklistIcon from '@mui/icons-material/Checklist';
 
 function LoginDialog(props) {
-
+  const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
@@ -36,35 +41,31 @@ function LoginDialog(props) {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Samuel Yuen Demo
         </Typography>
-        <Button color="inherit"
-          onClick={props?.onLogout}>Logout</Button>
+        {
+          !!props?.isLoggedIn &&
+          <Button color="inherit" variant="outlined" onClick={() => { navigate('/'); props?.onLogout(); }}>
+            Logout
+          </Button>
+        }
       </Toolbar>
 
       <Drawer open={isDrawerOpen} onClose={() => { setIsDrawerOpen(false) }}>
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <ListItem disablePadding>
+            <ListItemButton onClick={() => { navigate('/about'); setIsDrawerOpen(false); }}>
+              <ListItemIcon><PersonIcon /></ListItemIcon>
+              <ListItemText primary={"About"} />
+            </ListItemButton>
+          </ListItem>
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <ListItem disablePadding>
+            <ListItemButton onClick={() => { navigate('/listToDoItems'); setIsDrawerOpen(false); }}>
+              <ListItemIcon><ChecklistIcon /></ListItemIcon>
+              <ListItemText primary={"To-Do Items Management"} />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
     </AppBar>

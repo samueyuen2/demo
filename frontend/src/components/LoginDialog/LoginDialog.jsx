@@ -12,7 +12,7 @@ function LoginDialog(props) {
 
   return (
     <Dialog
-      open={open}
+      open={props.open}
     >
       <DialogTitle >
         Not logged in
