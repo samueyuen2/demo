@@ -31,7 +31,7 @@ ToDoItem.init(
   },
   {
     sequelize,
-    tableName: "ToDoItems",
+    tableName: "todoitems",
   }
 );
 

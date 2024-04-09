@@ -8,12 +8,11 @@ import dotenv from 'dotenv';
 dotenv.config({ path: process.env.DOTENV_CONFIG_PATH });
 const HTTP_LISTEN_PORT: string | number = normalizePort(process.env.HTTP_LISTEN_PORT || "8080") || 8080;
 
-const DB_DRIVER: string = process.env.DB_DRIVER || "";
-const DB_SERVER: string = process.env.DB_SERVER || "";
-const DB_USER: string = process.env.DB_USER || "";
-const DB_PASSWORD: string = process.env.DB_PASSWORD || "";
-const DB_PORT: number = Number.parseInt(process.env.DB_PORT || "1433", 1433);
-const DB_DB: string = process.env.DB_DB || "";
+const DB_SERVER: string = process.env.DB_SERVER || "localhost";
+const DB_USER: string = process.env.DB_USER || "postgres";
+const DB_PASSWORD: string = process.env.DB_PASSWORD || "postgres";
+const DB_PORT: number = Number.parseInt(process.env.DB_PORT || "5432", 10);
+const DB_DB: string = process.env.DB_DB || "demo";
 
 /**
  * Normalize a port into a number, string, or false.
@@ -33,7 +32,6 @@ function normalizePort(val: string) {
 
 export {
   HTTP_LISTEN_PORT,
-  DB_DRIVER,
   DB_SERVER,
   DB_USER,
   DB_PASSWORD,

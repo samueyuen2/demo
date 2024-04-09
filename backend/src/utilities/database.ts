@@ -1,4 +1,4 @@
-import { Sequelize, Options, DATE } from 'sequelize';
+import { Sequelize, DATE } from 'sequelize';
 import * as config from './config';
 
 // Override timezone formatting
@@ -16,25 +16,15 @@ const sequelize = new Sequelize(
   config.DB_USER,
   config.DB_PASSWORD,
   {
-    dialect: 'mssql',
+    dialect: 'postgres',
     host: config.DB_SERVER,
     port: config.DB_PORT,
-    database: config.DB_DB,
-    timezone: '+08:00',
-    dialectOptions: {
-      options: {
-        trustedConnection: true,
-        encrypt: true,
-        enableArithAbort: true,
-        trustServerCertificate: true,
-        useUTC: false,
-      },
-      connectionString: `Driver={ODBC Driver 17 for SQL Server};Data Source=${config.DB_SERVER},${config.DB_PORT};Database=${config.DB_DB};User ID=${config.DB_USER};Password=${config.DB_PASSWORD};Connect Timeout=60;Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadWrite`
+    define: {
+      "createdAt": "createdat",
+      "updatedAt": "updatedat"
     },
     logging: (msg) => console.log(msg),
   },
 );
-
-
 
 export { sequelize };
