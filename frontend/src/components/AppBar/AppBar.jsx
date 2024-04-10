@@ -63,7 +63,7 @@ function LoginDialog(props) {
           <ListItem disablePadding>
             <ListItemButton onClick={() => { navigate('/listToDoItems'); setIsDrawerOpen(false); }}>
               <ListItemIcon><ChecklistIcon /></ListItemIcon>
-              <ListItemText primary={"To-Do Items Management"} />
+              <ListItemText primary={"To-Do List Management"} />
             </ListItemButton>
           </ListItem>
         </List>

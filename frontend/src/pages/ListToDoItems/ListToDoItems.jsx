@@ -8,7 +8,8 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-  TextField
+  TextField,
+  Typography
 } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid';
 
@@ -140,6 +141,10 @@ function ListToDoItems() {
           </Button>
         </DialogActions>
       </Dialog>
+
+      <Typography variant='h5' sx={{ mt: "1rem" }}>
+        To-Do List
+      </Typography>
 
       <Button
         variant='contained'
