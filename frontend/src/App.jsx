@@ -23,17 +23,17 @@ function App() {
       <BrowserRouter>
         <AppBar onLogout={() => { setIsLoggedIn(false) }} isLoggedIn={isLoggedIn} />
         <Box sx={{ m: "0 10%" }}>
-          {
+          {/* {
             isLoggedIn ?
-              <>
+              <> */}
                 <Router />
-              </>
+              {/* </>
               :
               <LoginDialog
                 open={!isLoggedIn}
                 onClick={() => { setIsLoggedIn(true); }}
               />
-          }
+          } */}
         </Box>
       </BrowserRouter>
     </ThemeProvider>
