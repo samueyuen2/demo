@@ -20,6 +20,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import PersonIcon from '@mui/icons-material/Person';
 import ChecklistIcon from '@mui/icons-material/Checklist';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 function LoginDialog(props) {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ function LoginDialog(props) {
           <ListItem disablePadding>
             <ListItemButton onClick={() => { navigate('/about'); setIsDrawerOpen(false); }}>
               <ListItemIcon><PersonIcon /></ListItemIcon>
-              <ListItemText primary={"About"} />
+              <ListItemText primary={"About Me"} />
             </ListItemButton>
           </ListItem>
         </List>
@@ -63,7 +64,13 @@ function LoginDialog(props) {
           <ListItem disablePadding>
             <ListItemButton onClick={() => { navigate('/listToDoItems'); setIsDrawerOpen(false); }}>
               <ListItemIcon><ChecklistIcon /></ListItemIcon>
-              <ListItemText primary={"To-Do List Management"} />
+              <ListItemText primary={"Basic - To-Do List"} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton onClick={() => { navigate('/dashboard'); setIsDrawerOpen(false); }}>
+              <ListItemIcon><DashboardIcon /></ListItemIcon>
+              <ListItemText primary={"Advance - Dashboard"} />
             </ListItemButton>
           </ListItem>
         </List>

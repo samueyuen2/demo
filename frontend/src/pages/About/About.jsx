@@ -12,7 +12,7 @@ function About() {
                 <center>This is a demo website aiming to demonstrate some basics of my web development skills.</center>
             </Typography>
             <Typography variant='h6' color={"dark"} sx={{ m: "2rem 0" }}>
-                <center>Please try <Link to="/listToDoItems">the demonstration</Link> I have prepared for you.</center>
+                <center>Please try the demonstration (<Link to="/listToDoItems">To-Do List</Link>, <Link to="/dashboard">Dashboard</Link>) I have prepared for you.</center>
             </Typography>
 
             <Divider />
