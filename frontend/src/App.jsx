@@ -10,7 +10,7 @@ import Router from './router';
 
 // MUI
 import { ThemeProvider } from '@mui/material/styles';
-import { Box } from '@mui/material'
+import { Box, Container } from '@mui/material'
 
 // Theme
 import DefaultTheme from './theme/default';
@@ -22,7 +22,7 @@ function App() {
     <ThemeProvider theme={DefaultTheme} >
       <BrowserRouter>
         <AppBar onLogout={() => { setIsLoggedIn(false) }} isLoggedIn={isLoggedIn} />
-        <Box sx={{ m: "0 10%" }}>
+        <Container maxWidth="lg">
           {/* {
             isLoggedIn ?
               <> */}
@@ -34,7 +34,7 @@ function App() {
                 onClick={() => { setIsLoggedIn(true); }}
               />
           } */}
-        </Box>
+        </Container>
       </BrowserRouter>
     </ThemeProvider>
   )

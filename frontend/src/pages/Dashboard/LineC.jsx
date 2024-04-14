@@ -93,7 +93,7 @@ function LineC() {
                     }}
                     width={100}
                     height={175}
-                    style={{ border: "2px solid", borderBottom: "1px solid" }}
+                    // style={{ border: "2px solid", borderBottom: "1px solid" }}
                 />
             </Grid>
             <Grid item xs="12">
@@ -134,7 +134,7 @@ function LineC() {
                     }}
                     width={100}
                     height={225}
-                    style={{ border: "2px solid", borderTop: "1px solid" }}
+                    // style={{ border: "2px solid", borderTop: "1px solid" }}
                 />
             </Grid>
         </Grid>

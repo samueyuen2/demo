@@ -35,6 +35,8 @@ import PieC from './PieC'
 import Calendar from './Calendar'
 import Ranking from './Ranking'
 import DataGridDemo from './DataGridDemo'
+import MainCard from '../../components/MainCard'
+import AnalyticEcommerce from '../../components/AnalyticEcommerce'
 
 function Dashboard() {
 
@@ -61,6 +63,26 @@ function Dashboard() {
 
     return (
         <>
+
+            <Grid container rowSpacing={4.5} columnSpacing={2.75} sx={{ m: "1rem 0", mt: "0.75rem" }}>
+                {/* row 1 */}
+                <Grid item xs={12} sx={{ mb: -2.25 }}>
+                    <Typography variant="h5">Overveiw</Typography>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <AnalyticEcommerce title="Total Page Views" count="1,882" percentage={59.3} color="success" extra="35,000" />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <AnalyticEcommerce title="Total Users" count="78,250" percentage={70.5} color="success" extra="8,900" />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <AnalyticEcommerce title="Total Order" count="103" percentage={7.4} isLoss color="warning" extra="1,943" />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <AnalyticEcommerce title="Total Sales" count="£5,078" percentage={27.4} color="success" extra="$20,395" />
+                </Grid>
+            </Grid>
+
             <Typography variant='h5' color={"dark"} sx={{ m: "1rem 0" }}>
                 Weekly Price, Weekly Sales, Market Share
             </Typography>
@@ -68,11 +90,16 @@ function Dashboard() {
             <Grid container sx={{ m: "1rem 0" }}>
 
                 <Grid item xs>
-                    <LineC />
+
+                    <MainCard>
+                        <LineC />
+                    </MainCard>
                 </Grid>
 
                 <Grid item xs>
-                    <PieC />
+                    <MainCard>
+                        <PieC />
+                    </MainCard>
                 </Grid>
 
             </Grid>
@@ -83,19 +110,21 @@ function Dashboard() {
                 <Grid item xs="2">
                 </Grid>
                 <Grid item xs>
-                    <Typography variant='h4' color={"dark"} sx={{ m: "1rem 0" }}>
-                        Promotion Schedule
-                    </Typography>
-                    <Calendar />
+                    <MainCard>
+                        <Typography variant='h4' color={"dark"} sx={{ m: "1rem 0" }}>
+                            Promotion Schedule
+                        </Typography>
+                        <Calendar />
+                    </MainCard>
                 </Grid>
                 <Grid item xs="2">
                 </Grid>
             </Grid>
 
             <Divider />
-
-            <DataGridDemo />
-
+            <MainCard>
+                <DataGridDemo />
+            </MainCard>
             <Divider />
 
             <Ranking />

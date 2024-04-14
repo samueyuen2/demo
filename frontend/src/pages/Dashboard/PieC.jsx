@@ -65,8 +65,8 @@ function PieC() {
                 },
             }}
             width={100}
-            height={364}
-            style={{ border: "2px solid", borderLeft: "0px", padding: "1rem" }}
+            height={368}
+            style={{ padding: "1rem" }}
         />
     )
 }
