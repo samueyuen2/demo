@@ -39,47 +39,39 @@ import MainCard from '../../components/MainCard'
 import AnalyticEcommerce from '../../components/AnalyticEcommerce'
 
 function Dashboard() {
-
-    const [_line_numberBase, setLineNumberBase] = useState(10)
-    const [_line_lineAmount, setLineAmount] = useState(2)
-    const [_line_labels, setLineLabels] = useState(['12/4', '13/4', '14/4', '15/4', '16/4', '17/4', '18/4'])
-    // const [_line_labels, setLineLabels] = useState(['January', 'February', 'March', 'April', 'May', 'June', 'July'])
-
-    const lineChartDataGenerator = (numberBase, lineAmount, labels, variantNumber) => {
-        let temp = []
-        for (let i = 0; i < lineAmount; i++) {
-            const r = Math.random() * 255
-            const g = Math.random() * 255
-            const b = Math.random() * 255
-            temp?.push({
-                label: i === 0 ? "Our Brand" : `Brand ${i + 1}`,
-                data: !!labels ? labels.map(() => numberBase + (Math.random() * variantNumber)) : [],
-                borderColor: `rgb(${r}, ${g}, ${b})`,
-                backgroundColor: `rgba(${r}, ${g}, ${b}, 0.75)`,
-            })
-        }
-        return temp
-    }
+    // Card 1
+    const [_card_1, setCard1] = useState(Math.ceil(Math.random() * 1880));
+    const [_card_2, setCard2] = useState(Math.ceil(Math.random() * 7500));
+    const [_card_3, setCard3] = useState(Math.ceil(Math.random() * 188));
+    const [_card_4, setCard4] = useState(Math.ceil(Math.random() * 5078));
 
     return (
         <>
 
-            <Grid container rowSpacing={4.5} columnSpacing={2.75} sx={{ m: "1rem 0", mt: "0.75rem" }}>
+            <Grid container rowSpacing={4.5} sx={{ m: "1rem 0", mt: "0.75rem" }}>
                 {/* row 1 */}
                 <Grid item xs={12} sx={{ mb: -2.25 }}>
-                    <Typography variant="h5">Overveiw</Typography>
+                    <Typography variant="h5">Overveiw <Button variant='contained'
+                        sx={{ ml: "1rem" }}
+                        onClick={() => {
+                            setCard1(Math.ceil(Math.random() * 1880))
+                            setCard2(Math.ceil(Math.random() * 7500))
+                            setCard3(Math.ceil(Math.random() * 188))
+                            setCard4(Math.ceil(Math.random() * 5078))
+                        }}
+                    > Randomize Data</Button></Typography>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <AnalyticEcommerce title="Total Page Views" count="1,882" percentage={59.3} color="success" extra="35,000" />
+                    <AnalyticEcommerce title="Total Page Views" count={_card_1} percentage={59.3} color="success" extra={Math.ceil(_card_1 * 1.593)} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <AnalyticEcommerce title="Total Users" count="78,250" percentage={70.5} color="success" extra="8,900" />
+                    <AnalyticEcommerce title="Total Sold Packages" count={_card_2} percentage={20.5} color="success" extra={Math.ceil(_card_2 * 1.205)} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <AnalyticEcommerce title="Total Order" count="103" percentage={7.4} isLoss color="warning" extra="1,943" />
+                    <AnalyticEcommerce title="Total Order" count={_card_3} percentage={7.4} isLoss color="warning" extra={Math.ceil(_card_3 * 1.074)} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <AnalyticEcommerce title="Total Sales" count="£5,078" percentage={27.4} color="success" extra="$20,395" />
+                    <AnalyticEcommerce title="Total Sales" count={_card_4} percentage={27.4} color="success" extra={Math.ceil(_card_4 * 1.274)} />
                 </Grid>
             </Grid>
 

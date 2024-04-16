@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { DataGrid } from '@mui/x-data-grid';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 90, align: "center", headerAlign: "center" },
@@ -86,7 +87,7 @@ export default function DataGridDemo() {
     <Box sx={{ maxHeight: 750, width: '100%', m: "1rem 0" }}>
 
       <Typography variant='h5' color={"dark"} sx={{ m: "1rem 0" }}>
-        Greater London Stock Overview (in %)
+        Greater London Stock Overview (in %).<br /><i><u>Please press <MoreVertIcon /> in column headers to apply extra filters.</u></i>
       </Typography>
       <DataGrid
         rows={rows}
