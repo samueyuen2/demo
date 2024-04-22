@@ -8,7 +8,8 @@
     "start": "ts-node ./src/index.ts",
     "prestart": "npm run build",
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
-    "build": "tsc --build --clean && tsc --noEmit"
+    "build": "tsc --build --clean && tsc --noEmit",
+    "dummy": "ts-node ./src/console/add-random-data.ts"
   },
   "author": "",
   "license": "ISC",

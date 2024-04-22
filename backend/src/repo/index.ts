@@ -1,6 +1,11 @@
-// import { Participant } from './participant';
+import { Brand } from './Brand';
+import { Order } from './Order';
+import { Retailer } from './Retailer';
 
 console.log('Setting up database association...');
+
+Order.hasOne(Brand, { as: 'brand', sourceKey: 'brandid', foreignKey: 'id' });
+Order.hasOne(Retailer, { as: 'retailer', sourceKey: 'retailerid', foreignKey: 'id' });
 
 // Participant.hasOne(EventRegistration, { as: 'form', sourceKey: 'formId', foreignKey: 'id' });
 // Participant.hasOne(Event, { as: 'event', sourceKey: 'eventId', foreignKey: 'id' });

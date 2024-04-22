@@ -5,6 +5,10 @@ import { handleError, logError } from '../routes/middlewares/error';
 
 import toDoItemRouter from '../routes/controllers/api/toDoItem';
 
+import brandRouter from '../routes/controllers/api/brand';
+import orderRouter from '../routes/controllers/api/order';
+import retailerRouter from '../routes/controllers/api/retailer';
+
 function initHelmet(app: express.Express) {
 
   // Customize helmet filters to meet web security scan requirement
@@ -37,6 +41,9 @@ expressApp.use(express.urlencoded({ extended: false }));
 
 // Handle API requests
 expressApp.use('/api/toDoItem', toDoItemRouter);
+expressApp.use('/api/brand', brandRouter);
+expressApp.use('/api/order', orderRouter);
+expressApp.use('/api/retailer', retailerRouter);
 
 // error handler
 expressApp.use('/api', handleError);

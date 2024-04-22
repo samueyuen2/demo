@@ -10,21 +10,32 @@ DATE.prototype._stringify = function (date: any, options: any) {
   return date.format('YYYY-MM-DD HH:mm:ss');
 };
 
-// TODO: Timezone?
+// For Local Dev
+// const sequelize = new Sequelize(
+//   config.DB_DB,
+//   config.DB_USER,
+//   config.DB_PASSWORD,
+//   {
+//     dialect: 'postgres',
+//     host: config.DB_SERVER,
+//     port: config.DB_PORT,
+//     define: {
+//       "createdAt": "createdat",
+//       "updatedAt": "updatedat"
+//     },
+//     logging: (msg) => console.log(msg),
+//   },
+// );
+
 const sequelize = new Sequelize(
-  config.DB_DB,
-  config.DB_USER,
-  config.DB_PASSWORD,
+  config.DB_URL,
   {
-    dialect: 'postgres',
-    host: config.DB_SERVER,
-    port: config.DB_PORT,
     define: {
       "createdAt": "createdat",
-      "updatedAt": "updatedat"
+      "updatedAt": "updatedat",
     },
     logging: (msg) => console.log(msg),
-  },
+  }
 );
 
 export { sequelize };

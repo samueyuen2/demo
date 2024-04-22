@@ -8,6 +8,10 @@ import dotenv from 'dotenv';
 dotenv.config({ path: process.env.DOTENV_CONFIG_PATH });
 const HTTP_LISTEN_PORT: string | number = normalizePort(process.env.HTTP_LISTEN_PORT || "8080") || 8080;
 
+// For Vercel Postgres
+const DB_URL: string = process.env.POSTGRES_URL || "";
+
+// FOr Local Dev
 const DB_SERVER: string = process.env.DB_SERVER || "localhost";
 const DB_USER: string = process.env.DB_USER || "postgres";
 const DB_PASSWORD: string = process.env.DB_PASSWORD || "postgres";
@@ -32,6 +36,7 @@ function normalizePort(val: string) {
 
 export {
   HTTP_LISTEN_PORT,
+  DB_URL,
   DB_SERVER,
   DB_USER,
   DB_PASSWORD,
