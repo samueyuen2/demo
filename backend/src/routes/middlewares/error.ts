@@ -16,7 +16,7 @@ async function handleError(err: any, req: Request, res: Response, next: NextFunc
     return res.status(200).send(createErrorBody(String(err.message)));
   }
   else {
-    return res.status(200).send(createErrorBody('Internal Server Error.'));
+    return res.status(200).send(createErrorBody(`Internal Server Error, ${err}, ${err?.message}`));
   }
 };
 
