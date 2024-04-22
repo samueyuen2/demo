@@ -9,6 +9,10 @@ import brandRouter from '../routes/controllers/api/brand';
 import orderRouter from '../routes/controllers/api/order';
 import retailerRouter from '../routes/controllers/api/retailer';
 
+import { Brand } from '../repo/Brand';
+import { Order } from '../repo/Order';
+import { Retailer } from '../repo/Retailer';
+
 function initHelmet(app: express.Express) {
 
   // Customize helmet filters to meet web security scan requirement
@@ -38,6 +42,11 @@ initHelmet(expressApp);
 
 expressApp.use(express.json({ limit: '50gb' }));
 expressApp.use(express.urlencoded({ extended: false }));
+
+console.log('Begin - Setting up database association...');
+Order.hasOne(Brand, { as: 'brand', sourceKey: 'brandid', foreignKey: 'id' });
+Order.hasOne(Retailer, { as: 'retailer', sourceKey: 'retailerid', foreignKey: 'id' });
+console.log('Finish - Setting up database association...');
 
 // Handle API requests
 expressApp.use('/api/toDoItem', toDoItemRouter);
