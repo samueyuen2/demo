@@ -30,6 +30,7 @@ DATE.prototype._stringify = function (date: any, options: any) {
 const sequelize = new Sequelize(
   config.DB_URL,
   {
+    dialect: 'postgres',
     define: {
       "createdAt": "createdat",
       "updatedAt": "updatedat",
