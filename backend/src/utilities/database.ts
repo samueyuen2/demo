@@ -31,6 +31,7 @@ const sequelize = new Sequelize(
   config.DB_URL,
   {
     dialect: 'postgres',
+    dialectModule: require('pg'),
     define: {
       "createdAt": "createdat",
       "updatedAt": "updatedat",
