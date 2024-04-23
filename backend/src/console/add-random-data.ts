@@ -30,7 +30,7 @@ const main = async () => {
 
   // A JSON to store the criteria to create some order records
   const orderCriteria = {
-    monthsBefore: 6, monthsAfter: 6
+    daysBefore: 30, daysAfter: 20
   }
 
   try {
@@ -79,11 +79,11 @@ const main = async () => {
 
     console.log('Begin - Insert Dummy Data into Table - Orders');
     // Create the records
-    const start = moment()?.startOf('day')?.subtract(orderCriteria?.monthsBefore, 'month')
-    const duration = orderCriteria?.monthsBefore + orderCriteria?.monthsAfter
+    const start = moment()?.startOf('d')?.subtract(orderCriteria?.daysBefore, 'd')
+    const duration = orderCriteria?.daysBefore + orderCriteria?.daysAfter
 
     for (let i = 0; i < duration; i++) {
-      const dateValue = start?.add(i, 'month')
+      const dateValue = start?.add(1, 'd')
       for (const retailer of retailersArray) {
         const r = await Retailer.findOne({ where: { name: retailer.name } })
         for (const brand of brandsArray) {

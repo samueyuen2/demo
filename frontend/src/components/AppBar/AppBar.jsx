@@ -70,7 +70,7 @@ function LoginDialog(props) {
           <ListItem disablePadding>
             <ListItemButton onClick={() => { navigate('/dashboard'); setIsDrawerOpen(false); }}>
               <ListItemIcon><DashboardIcon /></ListItemIcon>
-              <ListItemText primary={"Advance - Dashboard"} />
+              <ListItemText primary={"Demo - Dashboard"} />
             </ListItemButton>
           </ListItem>
         </List>
