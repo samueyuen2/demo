@@ -1,5 +1,6 @@
 import express from 'express';
 import helmet from 'helmet';
+import cors from 'cors';
 
 import { handleError, logError } from '../routes/middlewares/error';
 
@@ -40,6 +41,7 @@ const expressApp = express();
 
 initHelmet(expressApp);
 
+expressApp.use(cors({ origin: ["https://demo-wine-psi.vercel.app"] }))
 expressApp.use(express.json({ limit: '50gb' }));
 expressApp.use(express.urlencoded({ extended: false }));
 
