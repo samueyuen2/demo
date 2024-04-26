@@ -63,40 +63,25 @@ function Dashboard() {
             <Grid container rowSpacing={4.5} sx={{ m: "1rem 0", mt: "0.75rem" }}>
                 {/* row 1 */}
                 <Grid item xs={12} sx={{ mb: -2.25 }}>
-                    <Typography variant="h5">This Week Overveiw
-                        {/* <Button variant='contained'
-                            sx={{ ml: "1rem" }}
-                            onClick={() => {
-                                setCard1(Math.ceil(Math.random() * 1880))
-                                setCard2(Math.ceil(Math.random() * 7500))
-                                setCard3(Math.ceil(Math.random() * 188))
-                                setCard4(Math.ceil(Math.random() * 5078))
-                            }}
-                        >
-                            Randomize Data
-                        </Button> */}
-                    </Typography>
+                    <Typography variant="h5">This Week Overveiw</Typography>
                 </Grid>
-                {/* <Grid item xs={12} sm={6} md={4} lg={3}>
-                    <AnalyticEcommerce title="Total Page Views" count={_card_1} percentage={59.3} color="success" extra={Math.ceil(_card_1 * 1.593)} />
-                </Grid> */}
                 <Grid item xs={12} sm={6} md={4} lg={3}>
                     <AnalyticEcommerce title="Total Sales" count={sliceState?.totalSale}
-                        percentage={Math.ceil(sliceState?.totalSale / sliceState?.totalSale_lw * 100)}
+                        percentage={Math.ceil(sliceState?.totalSale / sliceState?.totalSale_lw * 100) - 100}
                         isLoss={sliceState?.totalSale > sliceState?.totalSale_lw ? false : true}
                         extra={sliceState?.totalSale > sliceState?.totalSale_lw ? sliceState?.totalSale - sliceState?.totalSale_lw : sliceState?.totalSale_lw - sliceState?.totalSale}
                         color={sliceState?.totalSale > sliceState?.totalSale_lw ? "success" : "warning"} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
                     <AnalyticEcommerce title="Total Order" count={sliceState?.totalOrder}
-                        percentage={Math.ceil(sliceState?.totalOrder / sliceState?.totalOrder_lw * 100)}
+                        percentage={Math.ceil(sliceState?.totalOrder / sliceState?.totalOrder_lw * 100) - 100}
                         isLoss={sliceState?.totalOrder > sliceState?.totalOrder_lw ? false : true}
                         extra={sliceState?.totalOrder > sliceState?.totalOrder_lw ? sliceState?.totalOrder - sliceState?.totalOrder_lw : sliceState?.totalOrder_lw - sliceState?.totalOrder}
                         color={sliceState?.totalOrder > sliceState?.totalOrder_lw ? "success" : "warning"} />
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
                     <AnalyticEcommerce title="Total Sold Packages" count={sliceState?.totalPackage}
-                        percentage={Math.ceil(sliceState?.totalPackage / sliceState?.totalPackage_lw * 100)}
+                        percentage={Math.ceil(sliceState?.totalPackage / sliceState?.totalPackage_lw * 100) - 100}
                         isLoss={sliceState?.totalPackage > sliceState?.totalPackage_lw ? false : true}
                         extra={sliceState?.totalPackage > sliceState?.totalPackage_lw ? sliceState?.totalPackage - sliceState?.totalPackage_lw : sliceState?.totalPackage_lw - sliceState?.totalPackage}
                         color={sliceState?.totalPackage > sliceState?.totalPackage_lw ? "success" : "warning"} />
@@ -115,18 +100,12 @@ function Dashboard() {
                     </MainCard>
                 </Grid>
 
-                <Grid item xs="12">
-                    <MainCard>
-                        <PieC />
-                    </MainCard>
-                </Grid>
-
             </Grid>
 
             <Divider />
 
             <Grid container sx={{ m: "1rem 0" }}>
-                <Grid item xs="2">
+                <Grid item xs="1">
                 </Grid>
                 <Grid item xs>
                     <MainCard>
@@ -136,15 +115,29 @@ function Dashboard() {
                         <Calendar />
                     </MainCard>
                 </Grid>
-                <Grid item xs="2">
+                <Grid item xs="1">
                 </Grid>
             </Grid>
 
             <Divider />
-            <MainCard>
-                <DataGridDemo />
-            </MainCard>
+
+            <Grid container sx={{ m: "1rem 0" }}>
+
+                <Grid item xs="12">
+                    <MainCard>
+                        <DataGridDemo />
+                    </MainCard>
+                </Grid>
+
+            </Grid>
+
             <Divider />
+
+            <Grid item xs="12">
+                <MainCard>
+                    <PieC />
+                </MainCard>
+            </Grid>
 
         </>
     )

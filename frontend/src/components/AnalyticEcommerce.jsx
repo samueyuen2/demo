@@ -8,8 +8,9 @@ import MainCard from './MainCard';
 
 // assets
 // import { RiseOutlined, FallOutlined } from '@ant-design/icons';
-import MovingIcon from '@mui/icons-material/Moving';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 
 // ==============================|| STATISTICS - ECOMMERCE CARD  ||============================== //
 
@@ -25,23 +26,29 @@ const AnalyticEcommerce = ({ color, title, count, percentage, isLoss, extra }) =
             {count}
           </Typography>
         </Grid>
-        {percentage && (
-          <Grid item>
-            <Chip
-              variant="combined"
-              color={color}
-              icon={
-                <>
-                  {!isLoss && <MovingIcon style={{ fontSize: '0.75rem', color: 'inherit' }} />}
-                  {isLoss && <TrendingDownIcon style={{ fontSize: '0.75rem', color: 'inherit' }} />}
-                </>
-              }
-              label={`${percentage}%`}
-              sx={{ ml: 1.25, pl: 1 }}
-              size="small"
-            />
-          </Grid>
-        )}
+
+        <Grid item>
+          <Chip
+            variant="combined"
+            color={percentage == 0 ? "info" : isLoss ? "warning" : "success"}
+            icon={
+              <>
+                {percentage == 0 ?
+                  <TrendingFlatIcon style={{ fontSize: '0.75rem', color: 'inherit' }} />
+                  :
+                  isLoss ?
+                    <TrendingDownIcon style={{ fontSize: '0.75rem', color: 'inherit' }} />
+                    :
+                    <TrendingUpIcon style={{ fontSize: '0.75rem', color: 'success' }} />
+                }
+              </>
+            }
+            label={`${percentage}%`}
+            sx={{ ml: 1.25, pl: 1 }}
+            size="small"
+          />
+        </Grid>
+
       </Grid>
     </Stack>
     <Box sx={{ pt: 2.25 }}>
