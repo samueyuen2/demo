@@ -1,7 +1,7 @@
 import express, { NextFunction, Request, Response } from 'express';
-import { BrandSummary, createApiResponse, } from '../../../models/model';
+import { CategorySummary, createApiResponse, } from '../../../models/model';
 import { ApiError } from '../../../models/error';
-import * as BrandService from '../../../services/brand';
+import * as CategoryService from '../../../services/category';
 
 const router = express.Router();
 
@@ -10,11 +10,11 @@ router.post("/search", async (req: Request, res: Response, next: NextFunction) =
         const id: string = parseStringInput(req.body.id);
         const name: string = parseStringInput(req.body.name);
 
-        const brands = await BrandService.search({
+        const brands = await CategoryService.search({
             id,
             name,
         });
-        return res.status(200).send(createApiResponse<BrandSummary[]>("", brands));
+        return res.status(200).send(createApiResponse<CategorySummary[]>("", brands));
     } catch (err) {
         return next(err);
     }

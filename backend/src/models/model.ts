@@ -8,10 +8,28 @@ interface ToDoItemSummary {
   updatedAt?: Date,
 };
 
+interface ItemSummary {
+  id: string;
+  date: Date;
+  retailerid: string;
+  ean: string;
+  categoryid: string;
+  manufacturerid: string;
+  brandid: string;
+  producttitle: string;
+  image: string;
+  onpromotion: boolean;
+  promotiondesc: string;
+  baseprice: number;
+  shelfprice: number;
+  promotedprice: number;
+  createdAt?: Date,
+  updatedAt?: Date,
+};
+
 interface BrandSummary {
   id: string,
   name: string,
-  location: string,
   createdAt?: Date,
   updatedAt?: Date,
 };
@@ -19,7 +37,20 @@ interface BrandSummary {
 interface RetailerSummary {
   id: string,
   name: string,
-  phone: string,
+  createdAt?: Date,
+  updatedAt?: Date,
+};
+
+interface CategorySummary {
+  id: string,
+  name: string,
+  createdAt?: Date,
+  updatedAt?: Date,
+};
+
+interface ManufacturerSummary {
+  id: string,
+  name: string,
   createdAt?: Date,
   updatedAt?: Date,
 };
@@ -55,7 +86,10 @@ export {
   ApiResponse,
   createApiResponse,
   ToDoItemSummary,
+  ItemSummary,
   BrandSummary,
   RetailerSummary,
+  CategorySummary,
+  ManufacturerSummary,
   OrderSummary,
 }

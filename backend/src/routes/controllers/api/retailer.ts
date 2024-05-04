@@ -9,12 +9,10 @@ router.post("/search", async (req: Request, res: Response, next: NextFunction) =
     try {
         const id: string = parseStringInput(req.body.id);
         const name: string = parseStringInput(req.body.name);
-        const phone: string = parseStringInput(req.body.phone);
 
         const brands = await RetailerService.search({
             id,
             name,
-            phone
         });
         return res.status(200).send(createApiResponse<RetailerSummary[]>("", brands));
     } catch (err) {

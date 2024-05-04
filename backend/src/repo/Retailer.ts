@@ -4,7 +4,6 @@ import { DataTypes, Model, Optional } from 'sequelize';
 interface RetailerAttributes {
   id: string;
   name: string;
-  phone: string;
 };
 
 interface RetailerCreationAttributes extends Optional<RetailerAttributes, "id"> { }
@@ -12,7 +11,6 @@ interface RetailerCreationAttributes extends Optional<RetailerAttributes, "id"> 
 class Retailer extends Model<RetailerAttributes, RetailerCreationAttributes> implements RetailerAttributes {
   id: string;
   name: string;
-  phone: string;
 
   // Timestamps automatically created by Sequelize
   public readonly createdAt!: Date;
@@ -27,10 +25,6 @@ Retailer.init(
       defaultValue: DataTypes.UUIDV4,
     },
     name: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-    phone: {
       type: DataTypes.TEXT,
       allowNull: true,
     },

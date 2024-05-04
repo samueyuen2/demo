@@ -32,6 +32,7 @@ const sequelize = new Sequelize(
   {
     dialect: 'postgres',
     dialectModule: require('pg'),
+    timezone: '+08:00',
     define: {
       "createdAt": "createdat",
       "updatedAt": "updatedat",

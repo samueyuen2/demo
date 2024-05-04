@@ -1,14 +1,14 @@
 import { sequelize } from '../utilities/database';
 import { DataTypes, Model, Optional } from 'sequelize';
 
-interface BrandAttributes {
+interface ManufacturerAttributes {
   id: string;
   name: string;
 };
 
-interface BrandCreationAttributes extends Optional<BrandAttributes, "id"> { }
+interface ManufacturerCreationAttributes extends Optional<ManufacturerAttributes, "id"> { }
 
-class Brand extends Model<BrandAttributes, BrandCreationAttributes> implements BrandAttributes {
+class Manufacturer extends Model<ManufacturerAttributes, ManufacturerCreationAttributes> implements ManufacturerAttributes {
   id: string;
   name: string;
 
@@ -17,7 +17,7 @@ class Brand extends Model<BrandAttributes, BrandCreationAttributes> implements B
   public readonly updatedAt!: Date;
 }
 
-Brand.init(
+Manufacturer.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -31,8 +31,8 @@ Brand.init(
   },
   {
     sequelize,
-    tableName: "brands",
+    tableName: "manufacturers",
   }
 );
 
-export { Brand, BrandAttributes };
+export { Manufacturer, ManufacturerAttributes };

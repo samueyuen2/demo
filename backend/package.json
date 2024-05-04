@@ -10,6 +10,7 @@
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc --build --clean && tsc --noEmit",
     "dummy": "ts-node ./src/console/add-random-data.ts",
+    "sample": "ts-node ./src/console/sample-data-entry.ts",
     "vercel-build": "echo hello"
   },
   "author": "",

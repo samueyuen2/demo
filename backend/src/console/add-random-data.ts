@@ -56,7 +56,6 @@ const main = async () => {
     for (const brand of brandsArray) {
       await Brand.create({
         name: brand.name,
-        location: brand.location
       })
     }
     // Fetch the results
@@ -69,7 +68,6 @@ const main = async () => {
     for (const retailer of retailersArray) {
       await Retailer.create({
         name: retailer.name,
-        phone: retailer.phone
       })
     }
     // Fetch the results
