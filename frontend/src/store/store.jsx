@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-// App for later
-// import AppSlice from '../AppSlice';
+// Components
+import LoadingBackdropSlice from '../components/LoadingBackdrop/LoadingBackdropSlice';
 
 // ToDoItems
 import ListToDoItemsSlice from '../pages/ListToDoItems/ListToDoItemsSlice';
@@ -11,7 +11,7 @@ import DashboardSlice from '../pages/Dashboard/DashboardSlice';
 
 export const store = configureStore({
     reducer: {
-        // app: AppSlice.reducer,
+        loadingBackdrop: LoadingBackdropSlice.reducer,
         listToDoItems: ListToDoItemsSlice.reducer,
         dashboard: DashboardSlice.reducer,
     },

@@ -3,6 +3,7 @@ import { BrowserRouter, } from "react-router-dom";
 
 // Components
 import LoginDialog from './components/LoginDialog/LoginDialog'
+import LoadingBackdrop from './components/LoadingBackdrop/LoadingBackdrop'
 import AppBar from './components/AppBar/AppBar'
 
 // Router
@@ -20,14 +21,15 @@ function App() {
 
   return (
     <ThemeProvider theme={DefaultTheme} >
+      <LoadingBackdrop />
       <BrowserRouter>
         <AppBar onLogout={() => { setIsLoggedIn(false) }} isLoggedIn={isLoggedIn} />
         <Container maxWidth="lg">
           {/* {
             isLoggedIn ?
               <> */}
-                <Router />
-              {/* </>
+          <Router />
+          {/* </>
               :
               <LoginDialog
                 open={!isLoggedIn}
