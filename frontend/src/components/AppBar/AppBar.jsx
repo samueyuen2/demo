@@ -73,12 +73,12 @@ function LoginDialog(props) {
               <ListItemText primary={"TechTest - Dashboard"} />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          {/* <ListItem disablePadding>
             <ListItemButton onClick={() => { navigate('/insight'); setIsDrawerOpen(false); }}>
               <ListItemIcon><DashboardIcon /></ListItemIcon>
               <ListItemText primary={"TechTest - Insight"} />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
         </List>
       </Drawer>
     </AppBar>

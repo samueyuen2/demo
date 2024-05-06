@@ -22,7 +22,6 @@ import PickerAccordion from './PickerAccordion';
 function FullTable() {
   const dispatch = useDispatch()
   const sliceState = useSelector((state) => state.fullTable)
-  console.log("sliceState", sliceState)
 
   const [_filter_start, setFilterStart] = useState(moment("2022-02-01").startOf('day'))
   const [_filter_end, setFilterEnd] = useState(moment("2022-02-07").endOf('day'))
@@ -30,18 +29,30 @@ function FullTable() {
   const [_filter_manufacturer, setFilterManufacturer] = useState([])
   const [_filter_brand, setFilterBrand] = useState([])
   const [_filter_retailer, setFilterRetailer] = useState([])
-  const [_filter_keyword, setFilterkeyword] = useState([])
-  const [_filter_promotion, setFilterPromotion] = useState(null)
+  const [_filter_keyword, setFilterkeyword] = useState("Azera Americano")
+  const [_filter_promotion, setFilterPromotion] = useState(true)
 
   useEffect(() => {
     dispatch(getBasicInfo())
+    setFilterCategory([sliceState?.categories?.[0]])
+    setFilterManufacturer([sliceState?.manufacturers?.[0]])
+    dispatch(searchRecords({
+      start: _filter_start?.toISOString(),
+      end: _filter_end?.toISOString(),
+      categories: JSON.stringify(sliceState?.categories?.map((c) => c.id)),
+      manufacturers: JSON.stringify(sliceState?.manufacturers?.map((m) => m.id)),
+      brands: JSON.stringify(_filter_brand?.map((b) => b.id)),
+      retailers: JSON.stringify(_filter_retailer?.map((r) => r.id)),
+      keyword: _filter_keyword,
+      onpromotion: _filter_promotion
+    }))
     return () => { dispatch(slice.actions.resetStore()) }
   }, [])
 
   const columns = [
     { field: 'date', headerName: 'Date', width: 100, align: "center", headerAlign: "center" },
     { field: 'ean', headerName: 'EAN', width: 125, align: "center", headerAlign: "center" },
-    { field: 'producttitle', headerName: 'Product Title', width: 350, align: "center", headerAlign: "center", editable: true, },
+    { field: 'producttitle', headerName: 'Product Title', width: 350, align: "center", headerAlign: "center", },
     {
       field: 'image', headerName: 'Image', width: 100, align: "center", headerAlign: "center",
       renderCell: (params) => { return <img src={params?.row?.image} height="100%" width="auto" /> },
@@ -67,7 +78,7 @@ function FullTable() {
       renderCell: (params) => { return params?.row?.onpromotion ? "Yes" : "No" },
     },
     {
-      field: 'promotiondesc', headerName: 'Promotion Description', width: 175, align: "center", headerAlign: "center", editable: true,
+      field: 'promotiondesc', headerName: 'Promotion Description', width: 175, align: "center", headerAlign: "center",
       renderCell: (params) => { return params?.row?.promotiondesc ? params?.row?.promotiondesc : "N/A" },
     },
     {

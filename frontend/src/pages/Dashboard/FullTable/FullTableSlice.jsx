@@ -14,8 +14,8 @@ import * as categoryApi from "../../../api/categories";
 const initialState = {
   brands: [],
   retailers: [],
-  manufacturers: [],
-  categories: [],
+  manufacturers: [{ "id": "28a38e0a-247a-4e3c-9159-36c9954b606f", "name": "Nestlé" }],
+  categories: [{ "id": "ab8a4d9c-13ec-4a62-9419-51a39127afd6", "name": "Instant Coffee" }],
   records: []
 };
 

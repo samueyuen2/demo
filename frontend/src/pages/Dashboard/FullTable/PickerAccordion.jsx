@@ -23,7 +23,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 
 export function PickerAccordion(props) {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const [keyword, setKeyword] = useState('');
     const [listForSearch, setListForSearch] = useState(props?.list || []);
 
@@ -43,7 +43,7 @@ export function PickerAccordion(props) {
 
     return (
         <>
-            <Accordion expanded={isOpen} onChange={() => { setIsOpen(!isOpen) }} sx={{  backgroundColor: props.selected?.length > 0 ? "#fcefe6" : '#e6fce6' }}>
+            <Accordion expanded={isOpen} onChange={() => { setIsOpen(!isOpen) }} sx={{ backgroundColor: props.selected?.length > 0 ? "#fcefe6" : '#e6fce6' }}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ height: "3rem" }} >
                     <Grid container>
                         <Grid item xs={2}><Typography variant='h5' align='left'>{props.label}</Typography></Grid>

@@ -52,14 +52,21 @@ function ItemPriceLineChart() {
 
   const [_filter_start, setFilterStart] = useState(moment("2022-02-01").startOf('day'))
   const [_filter_end, setFilterEnd] = useState(moment("2022-02-07").endOf('day'))
-  const [_filter_manufacturer, setFilterManufacturer] = useState([])
-  const [_filter_brand, setFilterBrand] = useState([])
-  const [_filter_item, setFilterItem] = useState("")
+  const [_filter_manufacturer, setFilterManufacturer] = useState([{ "id": "68b1d94a-b653-49d3-b7ff-8ca4849b1790", "name": "Vitasoy International Holdings Ltd" }])
+  const [_filter_brand, setFilterBrand] = useState([{ "id": "2f209a99-3dec-40f5-8f0a-28a3d5c058e6", "name": "Vita", "createdat": "2024-05-04", "updatedat": "2024-05-04" }])
+  const [_filter_items, setFilterItems] = useState({})
+  const [_filter_item, setFilterItem] = useState({})
 
   const [_line_labels, setLineLabels] = useState(['1/2', '2/2', '3/2', '4/2', '5/2', '6/2', '7/2'])
 
   useEffect(() => {
     dispatch(getBasicInfo())
+    setFilterItem(sliceState?.items?.[0])
+    dispatch(searchItem({
+      start: _filter_start?.toISOString(),
+      end: _filter_end?.toISOString(),
+      ean: "4891028711469"
+    }))
     return () => { dispatch(slice.actions.resetStore()) }
   }, [])
 
@@ -96,7 +103,7 @@ function ItemPriceLineChart() {
   return (
     <Grid container spacing={2}>
       <Grid item xs={10}>
-        <Paper elevation={1} sx={{ p: 3, mt: 3 }}>
+        <Paper elevation={1} sx={{ p: 3 }}>
           <Grid container rowSpacing={2} columnSpacing={1}>
             {/* Title */}
             <Grid item xs={12}>
@@ -120,7 +127,7 @@ function ItemPriceLineChart() {
                   />
                 </DemoContainer>
               </LocalizationProvider>
-            </Grid >
+            </Grid>
             <Grid item xs={12} sm={6}>
               <LocalizationProvider dateAdapter={AdapterMoment}>
                 <DemoContainer components={['DatePicker']}>
@@ -270,7 +277,7 @@ function ItemPriceLineChart() {
         </Paper>
       </Grid>
       <Grid item xs={2}>
-        <Paper elevation={1} sx={{ p: 1, mt: 3 }}>
+        <Paper elevation={1} sx={{ p: 1 }}>
           {
             !!_filter_item ?
               <>

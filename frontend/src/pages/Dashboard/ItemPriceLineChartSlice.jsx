@@ -16,7 +16,22 @@ const initialState = {
   retailers: [],
   manufacturers: [],
   categories: [],
-  items: [],
+  items: [{
+    "id": "086ea9c4-14e2-44df-85d6-18a8e846070e",
+    "date": "2022-02-01",
+    "retailerid": "a1448f9a-ec74-4f96-b5d6-be14472c8e9e",
+    "ean": "4891028711469",
+    "categoryid": "7513f0d4-cef7-4471-94df-98104806bcf7",
+    "manufacturerid": "68b1d94a-b653-49d3-b7ff-8ca4849b1790",
+    "brandid": "2f209a99-3dec-40f5-8f0a-28a3d5c058e6",
+    "producttitle": "Vita Chrysanthemum Tea 250ml",
+    "image": "https://s3.eu-central-1.amazonaws.com/bn.production.core-images/4891028711469",
+    "onpromotion": false,
+    "promotiondesc": null,
+    "baseprice": 0.75,
+    "shelfprice": 0.75,
+    "promotedprice": 0.75
+  }],
   result: {},
 };
 

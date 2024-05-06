@@ -9,13 +9,13 @@ function Router() {
     return (
         <Routes>
             <Route path="/" >
-                <Route index element={<About />} />
+                <Route index element={<Dashboard />} />
                 <Route path="about" element={<About />} />
 
                 <Route path="listToDoItems" element={<ListToDoItems />} />
 
                 <Route path="dashboard" element={<Dashboard />} />
-                <Route path="insight" element={<Insight />} />
+                {/* <Route path="insight" element={<Insight />} /> */}
 
                 {/* Default Not Found Catcher */}
                 <Route path="*" element={<>Sorry, mate.<br />Page not found.</>} />
