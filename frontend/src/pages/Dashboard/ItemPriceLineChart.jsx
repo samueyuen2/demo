@@ -85,7 +85,7 @@ function ItemPriceLineChart() {
       const b = Math.random() * 255
       _result?.push({
         label: retailerNames[i],
-        data: records[retailerNames[i]]?.map((r) => r.shelfprice),
+        data: records[retailerNames[i]]?.map((r) => r.onpromotion ? r.promotedprice : r.shelfprice),
         borderColor: `rgb(${r}, ${g}, ${b})`,
         backgroundColor: `rgba(${r}, ${g}, ${b}, 0.75)`,
       })
@@ -95,16 +95,16 @@ function ItemPriceLineChart() {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs="10">
+      <Grid item xs={10}>
         <Paper elevation={1} sx={{ p: 3, mt: 3 }}>
           <Grid container rowSpacing={2} columnSpacing={1}>
             {/* Title */}
-            <Grid item xs="12">
-              <Typography variant="h5">Daily Shelf Price</Typography>
+            <Grid item xs={12}>
+              <Typography variant="h5">Daily Shelf Price Trend</Typography>
             </Grid >
 
             {/* Search Bars */}
-            <Grid item xs="12" sm="6">
+            <Grid item xs={12} sm={6}>
               <LocalizationProvider dateAdapter={AdapterMoment}>
                 <DemoContainer components={['DatePicker']}>
                   <DatePicker
@@ -121,7 +121,7 @@ function ItemPriceLineChart() {
                 </DemoContainer>
               </LocalizationProvider>
             </Grid >
-            <Grid item xs="12" sm="6">
+            <Grid item xs={12} sm={6}>
               <LocalizationProvider dateAdapter={AdapterMoment}>
                 <DemoContainer components={['DatePicker']}>
                   <DatePicker
@@ -139,7 +139,7 @@ function ItemPriceLineChart() {
               </LocalizationProvider>
             </Grid >
 
-            <Grid item xs="12">
+            <Grid item xs={12}>
               <FormControl sx={{ minWidth: "100%" }}>
                 <InputLabel id="select_manufacturer">Manufacturers (Mother Companies)</InputLabel>
                 <Select
@@ -171,7 +171,7 @@ function ItemPriceLineChart() {
               </FormControl>
             </Grid>
 
-            <Grid item xs="12">
+            <Grid item xs={12}>
               <FormControl sx={{ minWidth: "100%" }}>
                 <InputLabel id="select_brand">Brands</InputLabel>
                 <Select
@@ -203,7 +203,7 @@ function ItemPriceLineChart() {
               </FormControl>
             </Grid>
 
-            <Grid item xs="12">
+            <Grid item xs={12}>
               <FormControl sx={{ minWidth: "100%" }}>
                 <InputLabel id="select_item">Items</InputLabel>
                 <Select
@@ -229,7 +229,7 @@ function ItemPriceLineChart() {
               </FormControl>
             </Grid>
 
-            <Grid item xs="12">
+            <Grid item xs={12}>
               <Line
                 data={{
                   labels: _line_labels,
@@ -269,7 +269,7 @@ function ItemPriceLineChart() {
           </Grid >
         </Paper>
       </Grid>
-      <Grid item xs="2">
+      <Grid item xs={2}>
         <Paper elevation={1} sx={{ p: 1, mt: 3 }}>
           {
             !!_filter_item ?

@@ -73,6 +73,12 @@ function LoginDialog(props) {
               <ListItemText primary={"TechTest - Dashboard"} />
             </ListItemButton>
           </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton onClick={() => { navigate('/insight'); setIsDrawerOpen(false); }}>
+              <ListItemIcon><DashboardIcon /></ListItemIcon>
+              <ListItemText primary={"TechTest - Insight"} />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
     </AppBar>

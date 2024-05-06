@@ -43,26 +43,20 @@ import AnalyticEcommerce from '../../components/AnalyticEcommerce'
 import slice, { getBasicInfo } from './DashboardSlice'
 
 function Dashboard() {
-    const dispatch = useDispatch()
-    const sliceState = useSelector((state) => state.dashboard)
-    console.log(sliceState)
+    // const dispatch = useDispatch()
+    // const sliceState = useSelector((state) => state.dashboard)
+    // console.log(sliceState)
 
-    useEffect(() => {
-        dispatch(getBasicInfo())
-        return () => { dispatch(slice.actions.resetStore()) }
-    }, [])
-
-    // Card 1
-    const [_card_1, setCard1] = useState(Math.ceil(Math.random() * 1880));
-    const [_card_2, setCard2] = useState(Math.ceil(Math.random() * 7500));
-    const [_card_3, setCard3] = useState(Math.ceil(Math.random() * 188));
-    const [_card_4, setCard4] = useState(Math.ceil(Math.random() * 5078));
+    // useEffect(() => {
+    //     dispatch(getBasicInfo())
+    //     return () => { dispatch(slice.actions.resetStore()) }
+    // }, [])
 
     return (
         <>
-            <Grid container rowSpacing={4.5} sx={{ m: "1rem 0", mt: "0.75rem" }}>
-                {/* row 1 */}
-                <Grid item xs={12} sx={{ mb: -2.25 }}>
+            {/* <Grid container rowSpacing={4.5} sx={{ m: "1rem 0", mt: "0.75rem" }}> */}
+            {/* row 1 */}
+            {/* <Grid item xs={12} sx={{ mb: -2.25 }}>
                     <Typography variant="h5">This Week Overveiw</Typography>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3}>
@@ -86,9 +80,9 @@ function Dashboard() {
                         extra={sliceState?.totalPackage > sliceState?.totalPackage_lw ? sliceState?.totalPackage - sliceState?.totalPackage_lw : sliceState?.totalPackage_lw - sliceState?.totalPackage}
                         color={sliceState?.totalPackage > sliceState?.totalPackage_lw ? "success" : "warning"} />
                 </Grid>
-            </Grid>
+            </Grid> */}
 
-            <Typography variant='h5' color={"dark"} sx={{ m: "1rem 0" }}>
+            {/* <Typography variant='h5' color={"dark"} sx={{ m: "1rem 0" }}>
                 Weekly Price, Weekly Sales, Market Share
             </Typography>
 
@@ -100,30 +94,13 @@ function Dashboard() {
                     </MainCard>
                 </Grid>
 
-            </Grid>
-
-            <Divider />
-
-            <Grid container sx={{ m: "1rem 0" }}>
-                <Grid item xs="1">
-                </Grid>
-                <Grid item xs>
-                    <MainCard>
-                        <Typography variant='h4' color={"dark"} sx={{ m: "1rem 0" }}>
-                            Promotion Schedule
-                        </Typography>
-                        <Calendar />
-                    </MainCard>
-                </Grid>
-                <Grid item xs="1">
-                </Grid>
-            </Grid>
+            </Grid> */}
 
             <Divider />
 
             <Grid container sx={{ m: "1rem 0" }}>
 
-                <Grid item xs="12">
+                <Grid item xs={12}>
                     <MainCard>
                         <DataGridDemo />
                     </MainCard>
@@ -133,10 +110,25 @@ function Dashboard() {
 
             <Divider />
 
-            <Grid item xs="12">
-                <MainCard>
-                    <PieC />
-                </MainCard>
+            <Grid container sx={{ m: "1rem 0" }}>
+                <Grid item xs={1}>
+                </Grid>
+                <Grid item xs>
+                    <MainCard>
+                        <Typography variant='h4' color={"dark"} sx={{ m: "1rem 0" }}>
+                            Promotion Schedule
+                        </Typography>
+                        <Calendar />
+                    </MainCard>
+                </Grid>
+                <Grid item xs={1}>
+                </Grid>
+            </Grid>
+
+            <Divider />
+
+            <Grid item xs={12} sx={{ mb: "2rem" }}>
+                <Ranking />
             </Grid>
 
         </>

@@ -5,7 +5,10 @@ import {
   Grid,
   Paper,
   TextField,
-  Button
+  Button,
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography
 } from '@mui/material'
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
@@ -28,6 +31,7 @@ function FullTable() {
   const [_filter_brand, setFilterBrand] = useState([])
   const [_filter_retailer, setFilterRetailer] = useState([])
   const [_filter_keyword, setFilterkeyword] = useState([])
+  const [_filter_promotion, setFilterPromotion] = useState(null)
 
   useEffect(() => {
     dispatch(getBasicInfo())
@@ -37,7 +41,7 @@ function FullTable() {
   const columns = [
     { field: 'date', headerName: 'Date', width: 100, align: "center", headerAlign: "center" },
     { field: 'ean', headerName: 'EAN', width: 125, align: "center", headerAlign: "center" },
-    { field: 'producttitle', headerName: 'Product Title', width: 250, align: "center", headerAlign: "center", },
+    { field: 'producttitle', headerName: 'Product Title', width: 350, align: "center", headerAlign: "center", editable: true, },
     {
       field: 'image', headerName: 'Image', width: 100, align: "center", headerAlign: "center",
       renderCell: (params) => { return <img src={params?.row?.image} height="100%" width="auto" /> },
@@ -63,7 +67,7 @@ function FullTable() {
       renderCell: (params) => { return params?.row?.onpromotion ? "Yes" : "No" },
     },
     {
-      field: 'promotiondesc', headerName: 'Promotion Description', width: 175, align: "center", headerAlign: "center",
+      field: 'promotiondesc', headerName: 'Promotion Description', width: 175, align: "center", headerAlign: "center", editable: true,
       renderCell: (params) => { return params?.row?.promotiondesc ? params?.row?.promotiondesc : "N/A" },
     },
     {
@@ -83,7 +87,10 @@ function FullTable() {
   return (
     <Paper elevation={1} sx={{ p: 3, mt: 3 }}>
       <Grid container rowSpacing={1.5} columnSpacing={1}>
-        <Grid item xs="12" sm="6">
+        <Grid item xs={12}>
+          <Typography variant="h5">Daily Price Record Search</Typography>
+        </Grid>
+        <Grid item xs={12} sm={6}>
           <LocalizationProvider dateAdapter={AdapterMoment}>
             <DemoContainer components={['DatePicker']}>
               <DatePicker
@@ -100,7 +107,7 @@ function FullTable() {
             </DemoContainer>
           </LocalizationProvider>
         </Grid >
-        <Grid item xs="12" sm="6">
+        <Grid item xs={12} sm={6}>
           <LocalizationProvider dateAdapter={AdapterMoment}>
             <DemoContainer components={['DatePicker']}>
               <DatePicker
@@ -117,19 +124,19 @@ function FullTable() {
             </DemoContainer>
           </LocalizationProvider>
         </Grid >
-        <Grid item xs="12">
+        <Grid item xs={12}>
           <PickerAccordion list={sliceState?.categories} label="Categories" selected={_filter_category} setSelected={setFilterCategory} />
         </Grid>
-        <Grid item xs="12">
+        <Grid item xs={12}>
           <PickerAccordion list={sliceState?.manufacturers} label="Manufacturers" selected={_filter_manufacturer} setSelected={setFilterManufacturer} />
         </Grid>
-        <Grid item xs="12">
+        <Grid item xs={12}>
           <PickerAccordion list={sliceState?.brands} label="Brands" selected={_filter_brand} setSelected={setFilterBrand} />
         </Grid>
-        <Grid item xs="12">
+        <Grid item xs={12}>
           <PickerAccordion list={sliceState?.retailers} label="Retailers" selected={_filter_retailer} setSelected={setFilterRetailer} />
         </Grid>
-        <Grid item xs="6">
+        <Grid item xs={6}>
           <TextField
             label="Keyword of Product Title (Optional)"
             value={_filter_keyword}
@@ -137,7 +144,23 @@ function FullTable() {
             fullWidth
           />
         </Grid>
-        <Grid item xs="6">
+        <Grid item xs>
+          <ToggleButtonGroup
+            value={_filter_promotion}
+            onChange={(e, value) => { setFilterPromotion(value) }}
+            color='primary'
+            sx={{ height: "3.5rem" }}
+            exclusive
+          >
+            <ToggleButton value={true}>
+              <Typography variant="body1">On Promotion</Typography>
+            </ToggleButton>
+            <ToggleButton value={false}>
+              <Typography variant="body1">Not On Promotion</Typography>
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </Grid>
+        <Grid item xs={3}>
           <Button
             variant='contained'
             onClick={() => {
@@ -149,6 +172,7 @@ function FullTable() {
                 brands: JSON.stringify(_filter_brand?.map((b) => b.id)),
                 retailers: JSON.stringify(_filter_retailer?.map((r) => r.id)),
                 keyword: _filter_keyword,
+                onpromotion: _filter_promotion
               }))
             }}
             sx={{ height: "3.5rem" }}
@@ -157,7 +181,7 @@ function FullTable() {
             Search
           </Button>
         </Grid>
-        <Grid item xs="12">
+        <Grid item xs={12}>
           <DataGrid
             rows={sliceState?.records ?? []}
             columns={columns}
