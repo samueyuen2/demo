@@ -18,7 +18,7 @@ router.post("/search", async (req: Request, res: Response, next: NextFunction) =
         const brandid: string = parseStringInput(req.body.brandid);
         const producttitle: string = parseStringInput(req.body.producttitle);
         const image: string = parseStringInput(req.body.image);
-        // const onpromotion = req.body.name;
+        const onpromotion = req.body.onpromotion
         const promotiondesc: string = parseStringInput(req.body.promotiondesc);
         const baseprice: number = parseInt(req.body.baseprice, 10);
         const shelfprice: number = parseInt(req.body.shelfprice, 10);
@@ -55,6 +55,7 @@ router.post("/search", async (req: Request, res: Response, next: NextFunction) =
             brands: brands?.length > 0 ? brands : null,
             retailers: retailers?.length > 0 ? retailers : null,
             keyword,
+            onpromotion,
         });
         return res.status(200).send(createApiResponse<ItemSummary[]>("", items));
     } catch (err) {
