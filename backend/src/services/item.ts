@@ -5,6 +5,10 @@ import { ApiError } from "../models/error";
 import { ItemSummary } from "../models/model";
 
 import { Item, ItemAttributes } from "../repo/Item";
+import { Category, CategoryAttributes } from "../repo/Category";
+import { Manufacturer, ManufacturerAttributes } from "../repo/Manufacturer";
+import { Brand, BrandAttributes } from "../repo/Brand";
+import { Retailer, RetailerAttributes } from "../repo/Retailer";
 
 async function search(filter: {
   id?: string,
@@ -22,6 +26,11 @@ async function search(filter: {
   baseprice?: number,
   shelfprice?: number,
   promotedprice?: number,
+  categories?: string[] | null,
+  manufacturers?: string[] | null,
+  brands?: string[] | null,
+  retailers?: string[] | null,
+  keyword?: string,
 }): Promise<ItemSummary[]> {
   const whereOptions: WhereOptions<ItemAttributes> = {};
 
@@ -38,9 +47,6 @@ async function search(filter: {
   if (!!filter?.shelfprice) { whereOptions.shelfprice = filter.shelfprice; }
   if (!!filter?.promotedprice) { whereOptions.promotedprice = filter.promotedprice; }
 
-  console.log(moment(filter?.start).format("YYYY-MM-DD HH:mm:ss"))
-  console.log(moment(filter?.end).format("YYYY-MM-DD HH:mm:ss"))
-
   const condition: WhereAttributeHash = {
     [Op.and]: [whereOptions],
     date: (!!filter?.start && !!filter?.end) ? {
@@ -54,8 +60,33 @@ async function search(filter: {
     filter?.onpromotion !== undefined) {
     condition.onpromotion = filter?.onpromotion
   }
+  if (!!filter?.categories) { condition.categoryid = { [Op.in]: filter?.categories } }
+  if (!!filter?.manufacturers) { condition.manufacturerid = { [Op.in]: filter?.manufacturers } }
+  if (!!filter?.brands) { condition.brandid = { [Op.in]: filter?.brands } }
+  if (!!filter?.retailers) { condition.retailerid = { [Op.in]: filter?.retailers } }
+  if (!!filter?.keyword) { condition.producttitle = { [Op.like]: "%" + filter?.keyword + "%" } }
 
-  const items = await Item.findAll({ where: condition });
+  const items = await Item.findAll({
+    where: condition,
+    include: [
+      {
+        model: Category,
+        as: 'category'
+      },
+      {
+        model: Manufacturer,
+        as: 'manufacturer'
+      },
+      {
+        model: Brand,
+        as: 'brand'
+      },
+      {
+        model: Retailer,
+        as: 'retailer'
+      },
+    ],
+  });
 
   return items.map((item) => {
     return {
@@ -75,6 +106,10 @@ async function search(filter: {
       promotedprice: item.promotedprice,
       createdAt: item.createdAt,
       updatedAt: item.updatedAt,
+      category: item.category,
+      manufacturer: item.manufacturer,
+      brand: item.brand,
+      retailer: item.retailer,
     };
   });
 }
@@ -85,7 +120,7 @@ async function searchByBrandIds(brandIds: string[]): Promise<ItemSummary[]> {
   const items = await Item.findAll({
     where: {
       brandid: { [Op.in]: brandIds }
-    }
+    },
   });
 
   return items.map((item) => {

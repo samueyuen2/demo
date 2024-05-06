@@ -1,3 +1,5 @@
+import { Category } from "../repo/Category"
+import { Manufacturer } from "../repo/Manufacturer"
 import { Brand } from "../repo/Brand"
 import { Retailer } from "../repo/Retailer"
 
@@ -25,6 +27,10 @@ interface ItemSummary {
   promotedprice: number;
   createdAt?: Date,
   updatedAt?: Date,
+  category?: Category;
+  manufacturer?: Manufacturer;
+  brand?: Brand;
+  retailer?: Retailer;
 };
 
 interface BrandSummary {
