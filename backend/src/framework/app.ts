@@ -48,7 +48,12 @@ const expressApp = express();
 
 initHelmet(expressApp);
 
-expressApp.use(cors({ origin: ["https://demo-wine-psi.vercel.app"] }))
+expressApp.use(cors({
+  origin: [
+    "https://demo-wine-psi.vercel.app",
+    "https://demo-backend-kappa.vercel.app",
+  ]
+}))
 expressApp.use(express.json({ limit: '50gb' }));
 expressApp.use(express.urlencoded({ extended: false }));
 
