@@ -26,7 +26,7 @@ export default function Ranking() {
       <Grid item xs="6">
         <Paper elevation={1} sx={{ p: 1, mt: 3 }}>
           <Typography variant='h5' color={"dark"} sx={{ m: "1rem 0" }}>
-            <center>Biggest Price Drop <TrendingDownIcon /></center>
+            <center>Top 5 Biggest Price Drop <TrendingDownIcon /></center>
           </Typography>
           <List>
             <ListItem disablePadding>
@@ -129,7 +129,7 @@ export default function Ranking() {
       <Grid item xs="6">
         <Paper elevation={1} sx={{ p: 1, mt: 3 }}>
           <Typography variant='h5' color={"dark"} sx={{ m: "1rem 0" }}>
-            <center><GradeIcon /> New Arrival <GradeIcon /></center>
+            <center><GradeIcon />New Arrivals <GradeIcon /></center>
           </Typography>
           <List>
             <ListItem disablePadding>

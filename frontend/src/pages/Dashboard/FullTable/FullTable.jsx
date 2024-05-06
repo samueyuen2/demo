@@ -131,7 +131,7 @@ function FullTable() {
           <PickerAccordion list={sliceState?.manufacturers} label="Manufacturers" selected={_filter_manufacturer} setSelected={setFilterManufacturer} />
         </Grid>
         <Grid item xs={12}>
-          <PickerAccordion list={sliceState?.brands} label="Brands" selected={_filter_brand} setSelected={setFilterBrand} />
+          <PickerAccordion list={sliceState?.brands?.filter((b) => b.name !== '\"')} label="Brands" selected={_filter_brand} setSelected={setFilterBrand} />
         </Grid>
         <Grid item xs={12}>
           <PickerAccordion list={sliceState?.retailers} label="Retailers" selected={_filter_retailer} setSelected={setFilterRetailer} />
