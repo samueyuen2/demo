@@ -1,14 +1,17 @@
 import { createSlice, isRejected, isPending, isFulfilled } from '@reduxjs/toolkit';
 
-import * as DashboardSlice from '../../pages/Dashboard/DashboardSlice';
+import * as ItemPriceLineChartSlice from '../../pages/Dashboard/ItemPriceLineChartSlice';
+import * as FullTableSlice from '../../pages/Dashboard/FullTable/FullTableSlice';
 import * as ListToDoItemsSlice from '../../pages/ListToDoItems/ListToDoItemsSlice';
 
 
 const monitorLoadingThunks = [
-  DashboardSlice.getBasicInfo,
-  DashboardSlice.searchBrands,
-  DashboardSlice.searchItems,
-  DashboardSlice.searchItem,
+  FullTableSlice.getBasicInfo,
+  FullTableSlice.searchRecords,
+  ItemPriceLineChartSlice.getBasicInfo,
+  ItemPriceLineChartSlice.searchBrands,
+  ItemPriceLineChartSlice.searchItems,
+  ItemPriceLineChartSlice.searchItem,
   ListToDoItemsSlice.searchToDoItems,
   ListToDoItemsSlice.createToDoItem,
   ListToDoItemsSlice.modifyToDoItem,

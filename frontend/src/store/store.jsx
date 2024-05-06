@@ -7,13 +7,15 @@ import LoadingBackdropSlice from '../components/LoadingBackdrop/LoadingBackdropS
 import ListToDoItemsSlice from '../pages/ListToDoItems/ListToDoItemsSlice';
 
 // Dashboard
-import DashboardSlice from '../pages/Dashboard/DashboardSlice';
+import ItemPriceLineChartSlice from '../pages/Dashboard/ItemPriceLineChartSlice';
+import FullTableSlice from '../pages/Dashboard/FullTable/FullTableSlice';
 
 export const store = configureStore({
     reducer: {
         loadingBackdrop: LoadingBackdropSlice.reducer,
         listToDoItems: ListToDoItemsSlice.reducer,
-        dashboard: DashboardSlice.reducer,
+        itemPriceLineChart: ItemPriceLineChartSlice.reducer,
+        fullTable: FullTableSlice.reducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false

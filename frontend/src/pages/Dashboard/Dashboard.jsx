@@ -33,24 +33,15 @@ ChartJS.register(
 );
 
 import ItemPriceLineChart from './ItemPriceLineChart'
-
-import slice, { getBasicInfo } from './DashboardSlice'
+import FullTable from './FullTable/FullTable'
 
 function Dashboard() {
-    const dispatch = useDispatch()
-    const sliceState = useSelector((state) => state.dashboard)
-    // console.log(sliceState)
-
-    useEffect(() => {
-        dispatch(getBasicInfo())
-        return () => { dispatch(slice.actions.resetStore()) }
-    }, [])
 
     return (
         <>
-            <Paper elevation={1} sx={{ p: 3, mt: 3 }}>
-                <ItemPriceLineChart />
-            </Paper>
+            <FullTable />
+            <ItemPriceLineChart />
+            <br />
         </>
     )
 }

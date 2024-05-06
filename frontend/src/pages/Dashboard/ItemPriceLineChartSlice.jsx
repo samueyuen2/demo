@@ -17,11 +17,11 @@ const initialState = {
   manufacturers: [],
   categories: [],
   items: [],
-  result: [],
+  result: {},
 };
 
 export const getBasicInfo = createAsyncThunk(
-  "dashboard/getBasicInfo",
+  "itemPriceLineChart/getBasicInfo",
   async (payload) => {
     const manufacturers = await manufacturerApi.search(payload);
     return {
@@ -31,10 +31,9 @@ export const getBasicInfo = createAsyncThunk(
 );
 
 export const searchBrands = createAsyncThunk(
-  "dashboard/searchBrands",
+  "itemPriceLineChart/searchBrands",
   async (payload) => {
     const brands = await manufacturerBrandApi.searchBrands(payload);
-    console.log("brands.data.data:", brands.data.data)
     return {
       brands: brands.data.data,
     }
@@ -42,10 +41,9 @@ export const searchBrands = createAsyncThunk(
 );
 
 export const searchItems = createAsyncThunk(
-  "dashboard/searchItems",
+  "itemPriceLineChart/searchItems",
   async (payload) => {
     const items = await itemApi.searchByBrandIds(payload);
-    console.log("items.data.data:", items.data.data)
     return {
       items: items.data.data,
     }
@@ -53,21 +51,20 @@ export const searchItems = createAsyncThunk(
 );
 
 export const searchItem = createAsyncThunk(
-  "dashboard/searchItem",
+  "itemPriceLineChart/searchItem",
   async (payload) => {
-    console.log("dashboard/searchItem payload:", payload)
     const item = await itemApi.search(payload);
-    console.log("item.data.data:", item.data.data)
     return {
       item: item.data.data,
     }
   }
 );
 
-export const dashboardSlice = createSlice({
-  name: "dashboard",
+export const itemPriceLineChartSlice = createSlice({
+  name: "itemPriceLineChart",
   initialState,
   reducers: {
+    cleanResult: (state, action) => { state.result = {} },
     resetStore: () => initialState,
   },
   extraReducers: (builder) => {
@@ -91,7 +88,20 @@ export const dashboardSlice = createSlice({
         state.items = [];
       })
       .addCase(searchItem.fulfilled, (state, action) => {
-        state.result = action?.payload?.item?.sort((a, b) => a.ean > b.ean ? 1 : -1);
+        let result = action?.payload?.item?.sort((a, b) => a.retailer.name > b.retailer.name ? 1 : -1)
+        let resultObj = {}
+        for (const record of result) {
+          if (!resultObj[record?.retailer?.name]) {
+            resultObj[record?.retailer?.name] = [record]
+          } else {
+            resultObj[record?.retailer?.name].push(record)
+          }
+        }
+        let retailerNames = Object.keys(resultObj)
+        for (const name of retailerNames) {
+          resultObj[name] = resultObj[name]?.sort((a, b) => a.date > b.date ? 1 : -1)
+        }
+        state.result = resultObj
       })
       .addCase(searchItem.rejected, (state, action) => {
         state.result = [];
@@ -99,4 +109,4 @@ export const dashboardSlice = createSlice({
   },
 });
 
-export default dashboardSlice;
+export default itemPriceLineChartSlice;

@@ -54,7 +54,7 @@ function About() {
                     <Typography
                         variant="h4"
                         sx={{
-                            mt: "8rem",
+                            mt: "4rem",
                             fontFamily: "arvo"
                         }}
                     >
@@ -154,7 +154,7 @@ function About() {
 
 
                 {/* row 3 */}
-                <Grid item xs="12">
+                <Grid item xs="12" sx={{ mb: "3rem" }}>
                     <Typography
                         variant="h4"
                         sx={{
