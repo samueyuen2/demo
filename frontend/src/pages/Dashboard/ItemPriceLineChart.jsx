@@ -11,6 +11,7 @@ import {
   Box,
   Chip,
   MenuItem,
+  Button,
   Paper
 } from '@mui/material'
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -106,10 +107,24 @@ function ItemPriceLineChart() {
         <Paper elevation={1} sx={{ p: 3 }}>
           <Grid container rowSpacing={2} columnSpacing={1}>
             {/* Title */}
-            <Grid item xs={12}>
+            <Grid item xs>
               <Typography variant="h5">Daily Shelf Price Trend</Typography>
             </Grid >
+            <Grid item xs={'auto'}>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  setFilterStart(moment("2022-02-01").startOf('day'))
+                  setFilterEnd(moment("2022-02-07").endOf('day'))
+                  setFilterManufacturer([])
+                  setFilterBrand([])
+                  setFilterItem({})
+                  dispatch(slice.actions.cleanResult())
+                }}
+              >Clear All</Button>
+            </Grid ></Grid >
 
+          <Grid container rowSpacing={2} columnSpacing={1}>
             {/* Search Bars */}
             <Grid item xs={12} sm={6}>
               <LocalizationProvider dateAdapter={AdapterMoment}>
@@ -275,7 +290,7 @@ function ItemPriceLineChart() {
 
           </Grid >
         </Paper>
-      </Grid>
+      </Grid >
       <Grid item xs={2}>
         <Paper elevation={1} sx={{ p: 1 }}>
           {
@@ -309,7 +324,7 @@ function ItemPriceLineChart() {
           }
         </Paper>
       </Grid>
-    </Grid>
+    </Grid >
   )
 }
 

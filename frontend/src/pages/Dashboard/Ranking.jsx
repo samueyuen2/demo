@@ -23,7 +23,7 @@ import MainCard from '../../components/MainCard';
 export default function Ranking() {
   return (
     <Grid container columnSpacing={2}>
-      <Grid item xs="6">
+      <Grid item xs={6}>
         <Paper elevation={1} sx={{ p: 1, mt: 3 }}>
           <Typography variant='h5' color={"dark"} sx={{ m: "1rem 0" }}>
             <center>Top 5 Biggest Price Drop <TrendingDownIcon /></center>
@@ -126,7 +126,7 @@ export default function Ranking() {
           </List>
         </Paper>
       </Grid>
-      <Grid item xs="6">
+      <Grid item xs={6}>
         <Paper elevation={1} sx={{ p: 1, mt: 3 }}>
           <Typography variant='h5' color={"dark"} sx={{ m: "1rem 0" }}>
             <center><GradeIcon />New Arrivals <GradeIcon /></center>

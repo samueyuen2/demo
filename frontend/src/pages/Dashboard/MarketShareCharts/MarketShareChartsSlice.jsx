@@ -1,79 +1,89 @@
 import {
-    createAsyncThunk, createSlice,
-    isRejected, isPending, isFulfilled,
-  } from "@reduxjs/toolkit";
-  import moment from "moment-timezone";
-  import * as orderApi from "../../../api/order";
-  import * as brandApi from "../../../api/brand";
-  import * as retailerApi from "../../../api/retailer";
-  import * as itemApi from "../../../api/item";
-  import * as manufacturerApi from "../../../api/manufacturer";
-  import * as manufacturerBrandApi from "../../../api/manufacturerBrand";
-  import * as categoryApi from "../../../api/categories";
-  
-  const initialState = {
-    brands: [],
-    retailers: [],
-    manufacturers: [],
-    categories: [],
-    records: []
-  };
-  
-  export const getBasicInfo = createAsyncThunk(
-    "marketShareCharts/getBasicInfo",
-    async (payload) => {
-      const brands = await brandApi.search(payload);
-      const manufacturers = await manufacturerApi.search(payload);
-      const retailers = await retailerApi.search(payload);
-      const categories = await categoryApi.search(payload);
-      return {
-        brands: brands.data.data,
-        manufacturers: manufacturers.data.data,
-        retailers: retailers.data.data,
-        categories: categories.data.data,
-      }
+  createAsyncThunk, createSlice,
+  isRejected, isPending, isFulfilled,
+} from "@reduxjs/toolkit";
+import moment from "moment-timezone";
+import * as orderApi from "../../../api/order";
+import * as brandApi from "../../../api/brand";
+import * as retailerApi from "../../../api/retailer";
+import * as itemApi from "../../../api/item";
+import * as manufacturerApi from "../../../api/manufacturer";
+import * as manufacturerBrandApi from "../../../api/manufacturerBrand";
+import * as categoryApi from "../../../api/categories";
+
+const initialState = {
+  records: [],
+  onPromotion: 0,
+  notOnPromotion: 0,
+  brands_count: [],
+  manufacturers_count: [],
+  categories_count: [],
+};
+
+export const searchRecords = createAsyncThunk(
+  "marketShareCharts/searchRecords",
+  async (payload) => {
+    const records = await itemApi.search(payload);
+    console.log(records.data.data)
+    return {
+      records: records.data.data,
     }
-  );
-  
-  export const searchRecords = createAsyncThunk(
-    "marketShareCharts/searchRecords",
-    async (payload) => {
-      const records = await itemApi.search(payload);
-      console.log(records.data.data)
-      return {
-        records: records.data.data,
-      }
-    }
-  );
-  
-  export const marketShareChartsSlice = createSlice({
-    name: "marketShareCharts",
-    initialState,
-    reducers: {
-      cleanResult: (state, action) => { state.result = {} },
-      resetStore: () => initialState,
-    },
-    extraReducers: (builder) => {
-      builder
-        .addCase(getBasicInfo.fulfilled, (state, action) => {
-          state.brands = action?.payload?.brands;
-          state.manufacturers = action?.payload?.manufacturers;
-          state.retailers = action?.payload?.retailers;
-          state.categories = action?.payload?.categories;
-        })
-        .addCase(getBasicInfo.rejected, (state, action) => {
-          state.brands = []
-          state.manufacturers = []
-          state.retailers = []
-          state.categories = []
-        })
-        .addCase(searchRecords.fulfilled, (state, action) => {
-          state.records = action?.payload?.records;
-        })
-        .addCase(searchRecords.rejected, (state, action) => {
-          state.records = []
-        })
-    },
-  });
-  
-  export default marketShareChartsSlice;
+  }
+);
+
+export const marketShareChartsSlice = createSlice({
+  name: "marketShareCharts",
+  initialState,
+  reducers: {
+    cleanResult: (state, action) => { state.result = {} },
+    resetStore: () => initialState,
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(searchRecords.fulfilled, (state, action) => {
+        const { records } = action?.payload
+        state.records = records;
+
+        let onPromotion = 0;
+        let notOnPromotion = 0;
+        let brands = new Set()
+        let manufacturers = new Set()
+        let categories = new Set()
+        let brands_count = new Map()
+        let manufacturers_count = new Map()
+        let categories_count = new Map()
+        for (const record of action?.payload?.records) {
+          if (record?.onpromotion) { onPromotion++ } else { notOnPromotion++ }
+          if (brands.has(record?.brand?.name)) {
+            brands_count.set(record?.brand?.name, brands_count.get(record?.brand?.name) + 1)
+          } else {
+            brands.add(record?.brand?.name);
+            brands_count.set(record?.brand?.name, 1)
+          }
+          if (manufacturers.has(record?.manufacturer?.name)) {
+            manufacturers_count.set(record?.manufacturer?.name, manufacturers_count.get(record?.manufacturer?.name) + 1)
+          } else {
+            manufacturers.add(record?.manufacturer?.name)
+            manufacturers_count.set(record?.manufacturer?.name, 1)
+          }
+          if (categories.has(record?.category?.name)) {
+            categories_count.set(record?.category?.name, categories_count.get(record?.category?.name) + 1)
+          } else {
+            categories.add(record?.category?.name)
+            categories_count.set(record?.category?.name, 1)
+          }
+        }
+        state.onPromotion = ((onPromotion / records?.length) * 100).toFixed(2)
+        state.notOnPromotion = ((notOnPromotion / records?.length) * 100).toFixed(2)
+
+        state.brands_count = Array.from(brands_count)?.sort((a, b) => a[1] > b[1] ? -1 : 1);
+        state.manufacturers_count = Array.from(manufacturers_count)?.sort((a, b) => a[1] > b[1] ? -1 : 1);
+        state.categories_count = Array.from(categories_count)?.sort((a, b) => a[1] > b[1] ? -1 : 1);
+      })
+      .addCase(searchRecords.rejected, (state, action) => {
+        state.records = []
+      })
+  },
+});
+
+export default marketShareChartsSlice;

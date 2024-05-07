@@ -30,6 +30,7 @@ export default function Calendar() {
             extendedProps: {
                 header: "Brew Tea Co English Breakfast Loose Leaf 500g",
                 retailers: ["Sainsburys"],
+                discount: "£4 discount for over £30",
                 basePrice: 20,
                 promotedPrice: 18,
                 priceDiff: 2
@@ -43,6 +44,7 @@ export default function Calendar() {
             extendedProps: {
                 header: "Ahmad Tea Strawberry Velvet Cake Tea Bags 15 per pack",
                 retailers: ["Morrisons"],
+                discount: "£5 Discount for over £20",
                 basePrice: 10,
                 promotedPrice: 7.5,
                 priceDiff: 2.5
@@ -56,6 +58,7 @@ export default function Calendar() {
             extendedProps: {
                 header: "Drink Me Chai Spiced Chai Latte 250g",
                 retailers: ["Morrisons"],
+                discount: "£10 Discount for over £40",
                 basePrice: 20,
                 promotedPrice: 15,
                 priceDiff: 5
@@ -69,6 +72,7 @@ export default function Calendar() {
             extendedProps: {
                 header: "Ueshima Fuji Mountain Ground 250g",
                 retailers: ["Morrisons"],
+                discount: "Buy 2 for £6",
                 basePrice: 4,
                 promotedPrice: 3,
                 priceDiff: 1
@@ -84,6 +88,7 @@ export default function Calendar() {
             extendedProps: {
                 header: "Lavazza Qualità Oro Coffee Beans 250g",
                 retailers: ["Ocado"],
+                discount: "£3 Discount",
                 basePrice: 12,
                 promotedPrice: 9,
                 priceDiff: 3
@@ -116,9 +121,10 @@ export default function Calendar() {
                     <DialogContentText>
                         <Typography variant="h6">Target Product: {eventDetails?.header}</Typography><br />
                         <Typography variant="h6">Target Retailer(s): {eventDetails?.retailers?.join(',')}</Typography><br />
-                        <Typography variant="h6">Base Price: <Chip label={"£" + eventDetails?.basePrice} /></Typography><br />
-                        <Typography variant="h6">Promoted Price: <Chip label={"£" + eventDetails?.promotedPrice} /></Typography><br />
-                        <Typography variant="h6">Price Difference: <Chip
+                        <Typography variant="h6">Discount Method: <Chip label={eventDetails?.discount} /></Typography><br />
+                        <Typography variant="h6">Base Price Per Item: <Chip label={"£" + eventDetails?.basePrice} /></Typography><br />
+                        <Typography variant="h6">Promoted Price Per Item: <Chip label={"£" + eventDetails?.promotedPrice} /></Typography><br />
+                        <Typography variant="h6">Price Difference Per Item: <Chip
                             label={(eventDetails?.basePrice > eventDetails?.promotedPrice ? "Save £" : "Incease £") + eventDetails?.priceDiff}
                             icon={eventDetails?.basePrice > eventDetails?.promotedPrice ? <ArrowDownwardIcon color='error' /> : <ArrowUpwardIcon />}
                         /></Typography><br />
