@@ -60,17 +60,17 @@ function MarketShareCharts() {
   const [_filter_start, setFilterStart] = useState(moment("2022-02-01").startOf('day'))
   const [_filter_end, setFilterEnd] = useState(moment("2022-02-07").endOf('day'))
   const [_filter_retailer, setFilterRetailer] = useState('')
-  const [_filter_keyword, setFilterkeyword] = useState('Coffee')
+  const [_filter_keyword, setFilterkeyword] = useState('Gold')
   const [_filter_groupby, setFilterGroupBy] = useState('categories')
 
   // for default selection for demo
   useEffect(() => {
     if (fullTableSliceState?.retailers?.length > 0) {
-      setFilterRetailer(fullTableSliceState?.retailers?.[1])
+      setFilterRetailer(fullTableSliceState?.retailers?.[2])
       dispatch(searchRecords({
         start: _filter_start?.toISOString(),
         end: _filter_end?.toISOString(),
-        retailers: JSON.stringify([fullTableSliceState?.retailers?.[1].id]),
+        retailers: JSON.stringify([fullTableSliceState?.retailers?.[2].id]),
         keyword: _filter_keyword,
         groupby: _filter_groupby
       }))

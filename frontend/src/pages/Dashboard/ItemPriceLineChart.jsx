@@ -53,9 +53,8 @@ function ItemPriceLineChart() {
 
   const [_filter_start, setFilterStart] = useState(moment("2022-02-01").startOf('day'))
   const [_filter_end, setFilterEnd] = useState(moment("2022-02-07").endOf('day'))
-  const [_filter_manufacturer, setFilterManufacturer] = useState([{ "id": "68b1d94a-b653-49d3-b7ff-8ca4849b1790", "name": "Vitasoy International Holdings Ltd" }])
-  const [_filter_brand, setFilterBrand] = useState([{ "id": "2f209a99-3dec-40f5-8f0a-28a3d5c058e6", "name": "Vita", "createdat": "2024-05-04", "updatedat": "2024-05-04" }])
-  const [_filter_items, setFilterItems] = useState({})
+  const [_filter_manufacturer, setFilterManufacturer] = useState([{ "id": "b865d365-e7db-4749-942b-571a90610eb6", "name": "Cafédirect PLC" }])
+  const [_filter_brand, setFilterBrand] = useState([{ "id": "a2196b75-e320-4bf0-8025-c3cca5f306fc", "name": "Cafédirect", "createdat": "2024-05-04", "updatedat": "2024-05-04" }])
   const [_filter_item, setFilterItem] = useState({})
 
   const [_line_labels, setLineLabels] = useState(['1/2', '2/2', '3/2', '4/2', '5/2', '6/2', '7/2'])
@@ -66,7 +65,7 @@ function ItemPriceLineChart() {
     dispatch(searchItem({
       start: _filter_start?.toISOString(),
       end: _filter_end?.toISOString(),
-      ean: "4891028711469"
+      ean: "5060198250484"
     }))
     return () => { dispatch(slice.actions.resetStore()) }
   }, [])
@@ -161,7 +160,7 @@ function ItemPriceLineChart() {
               </LocalizationProvider>
             </Grid >
 
-            <Grid item xs={12}>
+            <Grid item xs={10}>
               <FormControl sx={{ minWidth: "100%" }}>
                 <InputLabel id="select_manufacturer">Manufacturers (Mother Companies)</InputLabel>
                 <Select
@@ -177,7 +176,7 @@ function ItemPriceLineChart() {
                   }}
                   input={<OutlinedInput id="selectinput_manufacturer" label="Manufacturers (Mother Companies)" />}
                   renderValue={(selected) => (
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, height: "2rem", overflow: "hidden" }}>
                       {_filter_manufacturer.map((value) => (<Chip key={value.id} label={value.name} />))}
                     </Box>
                   )}
@@ -191,6 +190,22 @@ function ItemPriceLineChart() {
                   ))}
                 </Select>
               </FormControl>
+            </Grid>
+
+            <Grid item xs={2}>
+              <Button
+                variant='contained'
+                onClick={() => {
+                  setFilterManufacturer(sliceState?.manufacturers)
+                  dispatch(searchBrands({
+                    manufacturers: JSON.stringify(sliceState?.manufacturers?.map((m) => m?.id))
+                  }))
+                }}
+                fullWidth
+                sx={{ height: "3.5rem" }}
+              >
+                Add All
+              </Button>
             </Grid>
 
             <Grid item xs={12}>
@@ -209,7 +224,7 @@ function ItemPriceLineChart() {
                   }}
                   input={<OutlinedInput id="selectinput_brand" label="Brands" />}
                   renderValue={(selected) => (
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, height: "2rem", overflow: "hidden" }}>
                       {_filter_brand.map((value) => (<Chip key={value?.id} label={value?.name} />))}
                     </Box>
                   )}

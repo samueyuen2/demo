@@ -33,11 +33,11 @@ function Dashboard() {
         </Grid>
       </Grid>
 
-      <ItemPriceLineChart />
+      <Calendar />
       <MarketShareCharts />
+      <ItemPriceLineChart />
       <DataGridDemo />
       <Ranking />
-      <Calendar />
       <FullTable />
       <br />
     </>

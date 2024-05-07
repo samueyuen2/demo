@@ -17,20 +17,20 @@ const initialState = {
   manufacturers: [],
   categories: [],
   items: [{
-    "id": "086ea9c4-14e2-44df-85d6-18a8e846070e",
+    "id": "73a515d8-4eb8-4606-a14c-d32737e696b2",
     "date": "2022-02-01",
     "retailerid": "a1448f9a-ec74-4f96-b5d6-be14472c8e9e",
-    "ean": "4891028711469",
-    "categoryid": "7513f0d4-cef7-4471-94df-98104806bcf7",
-    "manufacturerid": "68b1d94a-b653-49d3-b7ff-8ca4849b1790",
-    "brandid": "2f209a99-3dec-40f5-8f0a-28a3d5c058e6",
-    "producttitle": "Vita Chrysanthemum Tea 250ml",
-    "image": "https://s3.eu-central-1.amazonaws.com/bn.production.core-images/4891028711469",
+    "ean": "5060198250484",
+    "categoryid": "f40e6ef5-f37e-4564-be19-f18b33f25f73",
+    "manufacturerid": "b865d365-e7db-4749-942b-571a90610eb6",
+    "brandid": "a2196b75-e320-4bf0-8025-c3cca5f306fc",
+    "producttitle": "Cafedirect Fairtrade Lively Roast Ground Coffee 227g",
+    "image": "https://s3.eu-central-1.amazonaws.com/bn.production.core-images/5060198250484",
     "onpromotion": false,
     "promotiondesc": null,
-    "baseprice": 0.75,
-    "shelfprice": 0.75,
-    "promotedprice": 0.75
+    "baseprice": 3.75,
+    "shelfprice": 3.75,
+    "promotedprice": 3.75
   }],
   result: {},
 };
@@ -91,7 +91,7 @@ export const itemPriceLineChartSlice = createSlice({
         state.manufacturers = []
       })
       .addCase(searchBrands.fulfilled, (state, action) => {
-        state.brands = action?.payload?.brands?.sort((a, b) => a.name > b.name ? 1 : -1);
+        state.brands = action?.payload?.brands?.sort((a, b) => a.name > b.name ? 1 : -1).filter((e) => e.name !== '\"');
       })
       .addCase(searchBrands.rejected, (state, action) => {
         state.brands = [];
