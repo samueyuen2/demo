@@ -18,6 +18,26 @@ const initialState = {
   brands_count: [],
   manufacturers_count: [],
   categories_count: [],
+  // backgroundColor: (() => {
+  //   let result = []
+  //   for (let i = 0; i < 100; i++) {
+  //     const r = Math.random() * 255
+  //     const g = Math.random() * 255
+  //     const b = Math.random() * 255
+  //     result.push(`rgb(${r}, ${g}, ${b}, 0.75)`)
+  //   }
+  //   return result
+  // })(),
+  // borderColor: (() => {
+  //   let result = []
+  //   for (let i = 0; i < 100; i++) {
+  //     const r = Math.random() * 255
+  //     const g = Math.random() * 255
+  //     const b = Math.random() * 255
+  //     result.push(`rgb(${r}, ${g}, ${b})`)
+  //   }
+  //   return result
+  // })(),
 };
 
 export const searchRecords = createAsyncThunk(
@@ -41,7 +61,10 @@ export const marketShareChartsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(searchRecords.fulfilled, (state, action) => {
-        const { records } = action?.payload
+        // Remove records with the same EAN
+        const records = action?.payload?.records.filter((value, index, array) =>
+          index === array.findIndex((t) => (t.ean === value.ean))
+        )
         state.records = records;
 
         let onPromotion = 0;
@@ -52,7 +75,7 @@ export const marketShareChartsSlice = createSlice({
         let brands_count = new Map()
         let manufacturers_count = new Map()
         let categories_count = new Map()
-        for (const record of action?.payload?.records) {
+        for (const record of records) {
           if (record?.onpromotion) { onPromotion++ } else { notOnPromotion++ }
           if (brands.has(record?.brand?.name)) {
             brands_count.set(record?.brand?.name, brands_count.get(record?.brand?.name) + 1)
