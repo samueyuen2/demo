@@ -41,7 +41,7 @@ export default function Ranking() {
                   <Grid item xs>
                     <Typography variant="h6">
                       <b>Nescafe Alta Rica Instant Coffee 190g</b><br />
-                      <Chip label={"£8.5 > £5"} sx={{ fontSize: 20 }} /> <Chip label={"Save £3.5"} sx={{ fontSize: 20 }} color='success' />
+                      <Chip label={"£8.5 > £5"} sx={{ fontSize: 20 }} /> <Chip label={"Save £3.5"} sx={{ fontSize: 20 }} color='success' /><Chip label={"Sainsburys"} sx={{ fontSize: 20 }} />
                     </Typography>
                   </Grid>
                 </Grid>
@@ -60,7 +60,7 @@ export default function Ranking() {
                   <Grid item xs>
                     <Typography variant="h6">
                       <b>Carte Noire Classique Instant Coffee 180g</b><br />
-                      <Chip label={"£7 > £4"} sx={{ fontSize: 20 }} /> <Chip label={"Save £3"} sx={{ fontSize: 20 }} color='success' />
+                      <Chip label={"£7 > £4"} sx={{ fontSize: 20 }} /> <Chip label={"Save £3"} sx={{ fontSize: 20 }} color='success' /><Chip label={"Sainsburys"} sx={{ fontSize: 20 }} />
                     </Typography>
                   </Grid>
                 </Grid>
@@ -79,7 +79,7 @@ export default function Ranking() {
                   <Grid item xs>
                     <Typography variant="h6">
                       <b>Nescafe Gold Blend Roastery Collection Dark Roast Instant Coffee 100g</b><br />
-                      <Chip label={"£5 > £2.5"} sx={{ fontSize: 20 }} /> <Chip label={"Save £2.5"} sx={{ fontSize: 20 }} color='success' />
+                      <Chip label={"£5 > £2.5"} sx={{ fontSize: 20 }} /> <Chip label={"Save £2.5"} sx={{ fontSize: 20 }} color='success' /><Chip label={"Tesco"} sx={{ fontSize: 20 }} />
                     </Typography>
                   </Grid>
                 </Grid>
@@ -98,7 +98,7 @@ export default function Ranking() {
                   <Grid item xs>
                     <Typography variant="h6">
                       <b>Green Origins Organic Japanese Ceremonial Matcha Green Tea Powder 30g</b><br />
-                      <Chip label={"£10 > £7.5"} sx={{ fontSize: 20 }} /> <Chip label={"Save £2.5"} sx={{ fontSize: 20 }} color='success' />
+                      <Chip label={"£10 > £7.5"} sx={{ fontSize: 20 }} /> <Chip label={"Save £2.5"} sx={{ fontSize: 20 }} color='success' /><Chip label={"Ocado"} sx={{ fontSize: 20 }} />
                     </Typography>
                   </Grid>
                 </Grid>
@@ -117,7 +117,7 @@ export default function Ranking() {
                   <Grid item xs>
                     <Typography variant="h6">
                       <b>Nescafe Gold Blend Roastery Collection Light Roast Instant Coffee 100g</b><br />
-                      <Chip label={"£5 > £2.5"} sx={{ fontSize: 20 }} /> <Chip label={"Save £2.5"} sx={{ fontSize: 20 }} color='success' />
+                      <Chip label={"£5 > £2.5"} sx={{ fontSize: 20 }} /> <Chip label={"Save £2.5"} sx={{ fontSize: 20 }} color='success' /><Chip label={"Tesco"} sx={{ fontSize: 20 }} />
                     </Typography>
                   </Grid>
                 </Grid>
